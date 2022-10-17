@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="agh.ics.oop.MapDirectionTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2022-10-17T19:44:39" hostname="DESKTOP-AAJN6IU" time="0.02">
+  <properties/>
+  <testcase name="testSouthPrevious()" classname="agh.ics.oop.MapDirectionTest" time="0.014"/>
+  <testcase name="testSouthNext()" classname="agh.ics.oop.MapDirectionTest" time="0.0"/>
+  <testcase name="testEastNext()" classname="agh.ics.oop.MapDirectionTest" time="0.001"/>
+  <testcase name="testWestNext()" classname="agh.ics.oop.MapDirectionTest" time="0.001"/>
+  <testcase name="testWestPrevious()" classname="agh.ics.oop.MapDirectionTest" time="0.001"/>
+  <testcase name="testNorthPrevious()" classname="agh.ics.oop.MapDirectionTest" time="0.0"/>
+  <testcase name="testNorthNext()" classname="agh.ics.oop.MapDirectionTest" time="0.0"/>
+  <testcase name="testEastPrevious()" classname="agh.ics.oop.MapDirectionTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
