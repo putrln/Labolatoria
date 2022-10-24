@@ -10,15 +10,15 @@ public class Vector2d {
         this.y = y;
 
     }
+
+
     public boolean precedes(Vector2d other){
-        if ((this.x <= other.x) && (this.y <= other.y))
-            return true;
-        return false;
+        return (this.x <= other.x) && (this.y <= other.y);
+
     }
     public boolean follows(Vector2d other){
-        if ((this.x >= other.x) && (this.y >= other.y))
-            return true;
-        return false;
+        return (this.x >= other.x) && (this.y >= other.y);
+
     }
     public Vector2d add(Vector2d other){
         return new Vector2d(this.x + other.x,this.y + other.y);
@@ -26,6 +26,7 @@ public class Vector2d {
     public Vector2d subtract(Vector2d other){
         return new Vector2d(this.x - other.x,this.y - other.y);
     }
+    //Dodaj math
     public Vector2d upperRight(Vector2d other){
         int max_x = 0;
         int max_y = 0;
