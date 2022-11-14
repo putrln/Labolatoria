@@ -10,7 +10,10 @@ public class AnimalTest {
     @Test
     void Orientation()
     {
-        Animal dog = new Animal();
+        RectangularMap map = new RectangularMap(4,4);
+
+        Animal dog = new Animal(map);
+        map.place(dog);
         OptionsParser op = new OptionsParser();
         String [] moves = {"r","r","b","r","f","r","l"};
         MoveDirection[] move_dir = op.parse(moves);
@@ -18,7 +21,9 @@ public class AnimalTest {
             dog.move(move);
         assertEquals(MapDirection.WEST,dog.getOrientation());
         //------------------------------------------------------
-        dog = new Animal();
+        RectangularMap map2 = new RectangularMap(4,4);
+        map2.place(dog);
+        dog = new Animal(map2);
         op = new OptionsParser();
         String [] moves2 = {"l","r","r","l","l","l","b","b"};
         move_dir = op.parse(moves2);
@@ -31,17 +36,18 @@ public class AnimalTest {
     {
         String [] moves = {"f","f","l","f","f"};
         String [] moves2 = {"b","b","r","f","f","l","f","f","f","f"};
-
-
-
-        Animal dog = new Animal();
+        RectangularMap map = new RectangularMap(4,4);
+        Animal dog = new Animal(map);
+        map.place(dog);
         OptionsParser op = new OptionsParser();
         MoveDirection[] move_dir = op.parse(moves);
         for (MoveDirection move: move_dir)
             dog.move(move);
         assertTrue(dog.isAt(new Vector2d(0,4)));
         //------------------------------------------------------
-        dog = new Animal();
+        RectangularMap map2 = new RectangularMap(4,4);
+        dog = new Animal(map2);
+        map2.place(dog);
         op = new OptionsParser();
         move_dir = op.parse(moves2);
         for (MoveDirection move: move_dir)
@@ -57,7 +63,13 @@ public class AnimalTest {
         String [] moves2 = {"b","b","b","b","b","b","b","b","b"};
         String [] moves3 = {"r","f","f","f","f","f","f","f","f"};
         String [] moves4 = {"l","f","f","f","f","f","f","f","f"};
-        Animal dog = new Animal();
+        RectangularMap map1 = new RectangularMap(4,4);
+        RectangularMap map2 = new RectangularMap(4,4);
+        RectangularMap map3 = new RectangularMap(4,4);
+        RectangularMap map4 = new RectangularMap(4,4);
+
+        Animal dog = new Animal(map1);
+        map1.place(dog);
         OptionsParser op = new OptionsParser();
         MoveDirection[] move_dir = op.parse(moves);
         for (MoveDirection move: move_dir)
@@ -65,21 +77,24 @@ public class AnimalTest {
         assertTrue(dog.isAt(new Vector2d(2,4)));
 
         //---------------------------------------
-        dog = new Animal();
+        dog = new Animal(map2);
+        map2.place(dog);
         op = new OptionsParser();
         move_dir = op.parse(moves2);
         for (MoveDirection move: move_dir)
             dog.move(move);
         assertTrue(dog.isAt(new Vector2d(2,0)));
         //---------------------------------------
-        dog = new Animal();
+        dog = new Animal(map3);
+        map3.place(dog);
         op = new OptionsParser();
         move_dir = op.parse(moves3);
         for (MoveDirection move: move_dir)
             dog.move(move);
         assertTrue(dog.isAt(new Vector2d(4,2)));
         //---------------------------------------
-        dog = new Animal();
+        dog = new Animal(map4);
+        map4.place(dog);
         op = new OptionsParser();
         move_dir = op.parse(moves4);
         for (MoveDirection move: move_dir)

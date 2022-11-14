@@ -48,21 +48,15 @@ public class World {
 
     }
     public static void main(String[] args) {
-        //jak zaimplementować mechanizm, który wyklucza pojawienie się dwóch zwierząt w tym samym miejscu:
-        //Można stworzyć statyczne pole które będzie zawierało pozycje stworzonych już zwierząt
-        //i przed ruchem za kaźdym razem sprawdzać czy nie wchodzimy na czyjeś pole
-        OptionsParser op = new OptionsParser();
-        MoveDirection[] MoveTab = op.parse(args);
-        Animal dog = new Animal();
+        MoveDirection[] directions = new OptionsParser().parse(args);
+        IWorldMap map = new RectangularMap(10, 5);
 
-        for(MoveDirection mov : MoveTab)
-        {
-            System.out.println(mov);
-            dog.move(mov);
+        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4)};
+        IEngine engine = new SimulationEngine(directions, map, positions);
+        engine.run();
 
-        }
 
-        System.out.println(dog);
+
     }
 
 
