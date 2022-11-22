@@ -9,7 +9,6 @@ import java.util.stream.IntStream;
 public class GrassField extends AbstractWorldMap {
 
     private int numOfGrass;
-    //dziedziczenie abstract word map interfejst do abstract of map wszystkie wspolne rzeczy
     private List<Grass> grassOnMap = new ArrayList<>();
     public GrassField(int numOfGrass)
     {

@@ -6,7 +6,6 @@ import java.util.List;
 
 public abstract class AbstractWorldMap implements IWorldMap{
 
-    //nie pakuj trawy i zwierzat do jednej listy
 
     protected List<Animal> animals = new ArrayList<>();
 
