@@ -9,15 +9,18 @@ public class SimulationEngine implements IEngine {
         this.map = map;
         for(Vector2d x : positions )
         {
-            if (!map.isOccupied(x))
-            {
-                map.place(new Animal(map,x));
-            }
+            map.place(new Animal(map,x));
         }
     }
     @Override
     public void run() {
-       RectangularMap map  = (RectangularMap) this.map;
-       map.moveAnimals(moves);
+       IWorldMap map  = this.map;
+        int j = map.getAnimals().size();
+        System.out.println(map);
+        for(int i=0;i<moves.length;i++)
+        {
+            map.getAnimals().get(i % j).move(moves[i]);
+            System.out.println(map);
+        }
     }
 }

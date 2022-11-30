@@ -1,4 +1,7 @@
 package agh.ics.oop;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class World {
     public static void run(Direction[] array)
@@ -48,13 +51,14 @@ public class World {
 
     }
     public static void main(String[] args) {
-        MoveDirection[] directions = new OptionsParser().parse(args);
-        IWorldMap map = new RectangularMap(10, 5);
 
-        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4)};
+
+        MoveDirection[] directions = new OptionsParser().parse(args);
+        IWorldMap map = new GrassField(4);
+        System.out.println(map);
+        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
         IEngine engine = new SimulationEngine(directions, map, positions);
         engine.run();
-
 
 
     }
