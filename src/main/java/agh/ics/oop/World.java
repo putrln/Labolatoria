@@ -1,4 +1,6 @@
 package agh.ics.oop;
+import agh.ics.oop.gui.App;
+import javafx.application.Application;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -53,12 +55,18 @@ public class World {
     public static void main(String[] args) {
 
 
-        MoveDirection[] directions = new OptionsParser().parse(args);
-        IWorldMap map = new GrassField(4);
-        System.out.println(map);
-        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
-        IEngine engine = new SimulationEngine(directions, map, positions);
-        engine.run();
+        try {
+
+
+            Application.launch(App.class, args);
+
+
+        }
+        catch (IllegalArgumentException iea)
+        {
+            System.out.println(iea.getMessage());
+        }
+
 
 
 

@@ -1,7 +1,9 @@
 package agh.ics.oop;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import javax.management.InvalidApplicationException;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class AnimalTest {
@@ -105,15 +107,39 @@ public class AnimalTest {
     @Test
     void Parser()
     {
+
+
         String [] moves = {"b","dfdfs","b","f","dfsdfsdf"};
         MoveDirection[] move = {MoveDirection.BACKWARD,MoveDirection.BACKWARD,MoveDirection.FOWARD};
         OptionsParser op = new OptionsParser();
-        MoveDirection[] movesToCompare = op.parse(moves);
-
-        for(int i=0;i<move.length;i++)
-        {
-            assertEquals(move[i],movesToCompare[i]);
+        try {
+            MoveDirection[] movesToCompare = op.parse(moves);
+            for(int i=0;i<move.length;i++)
+            {
+                assertEquals(move[i],movesToCompare[i]);
+            }
         }
+        catch (IllegalArgumentException iae)
+        {
+            assertTrue(true);
+        }
+
+        String [] moves2 = {"b","b","f"};
+        MoveDirection[] move2 = {MoveDirection.BACKWARD,MoveDirection.BACKWARD,MoveDirection.FOWARD};
+        OptionsParser op2 = new OptionsParser();
+        try {
+            MoveDirection[] movesToCompare = op2.parse(moves2);
+            for(int i=0;i<move2.length;i++)
+            {
+                assertEquals(move2[i],movesToCompare[i]);
+            }
+        }
+        catch (IllegalArgumentException iae)
+        {
+            fail();
+        }
+
+
 
 
     }

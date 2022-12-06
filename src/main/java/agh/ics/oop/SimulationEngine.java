@@ -12,7 +12,8 @@ public class SimulationEngine implements IEngine {
         {
             Animal animal =  new Animal(map,x);
             map.place(animal);
-            animal.addObserver((IPositionChangeObserver) map);
+            animal.addObserver(map);
+
         }
     }
     @Override
