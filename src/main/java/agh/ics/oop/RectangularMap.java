@@ -1,8 +1,6 @@
 package agh.ics.oop;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+
 public class RectangularMap extends AbstractWorldMap {
     private final int width;
     private final int height;
@@ -24,12 +22,12 @@ public class RectangularMap extends AbstractWorldMap {
         {
             return false;
         }
-        animals.add(animal);
+        animals.put(animal.getPosition(),animal);
         return true;
 
     }
     @Override
-    public Vector2d[] setMap() {
+    public Vector2d[] getMapBounds() {
         return new Vector2d[]{new Vector2d(0,0),new Vector2d(width,height)};
     }
 
