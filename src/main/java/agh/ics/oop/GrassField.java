@@ -92,6 +92,7 @@ public class GrassField extends AbstractWorldMap {
             animals.put(animal.getPosition(), animal);
             animal.addObserver(mapBoundary);
             mapBoundary.addElement(animal.getPosition());
+
             return true;
         }
         throw new IllegalArgumentException(animal.getPosition() + " is not valid position");
@@ -101,8 +102,8 @@ public class GrassField extends AbstractWorldMap {
 
 
     @Override
-    public Object objectAt(Vector2d position) {
-        Object standardObjects = super.objectAt(position);
+    public IMapElement objectAt(Vector2d position) {
+        IMapElement standardObjects = super.objectAt(position);
         if (!(standardObjects == null)) {
             return standardObjects;
         }
