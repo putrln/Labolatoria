@@ -1,22 +1,23 @@
 package agh.ics.oop;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 import java.util.List;
-import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
+
 public abstract class AbstractWorldMap implements IWorldMap,IPositionChangeObserver{
 
 
 
     protected HashMap<Vector2d,Animal> animals = new HashMap<>();
-    public abstract Vector2d[] getMapBounds();
 
+
+
+    public abstract Vector2d[] getMapBounds();
 
     public String showMap(Vector2d lowerLeft, Vector2d upperRight) {
         MapVisualizer vis = new MapVisualizer(this);
-        return vis.draw(lowerLeft,upperRight);
+        return vis.draw(lowerLeft, upperRight);
     }
+
     @Override
     public boolean isOccupied(Vector2d position) {
         return this.objectAt(position) != null;

@@ -10,8 +10,14 @@ public class GrassField extends AbstractWorldMap {
 
     private Map<Vector2d, Grass> grassOnMap = new HashMap<>();
 
+    protected MapBoundary mapBoundary = new MapBoundary();
+
+
     public GrassField(int numOfGrass) {
+
         addGrass(numOfGrass);
+        mapBoundary.addElements(grassOnMap.keySet());
+
     }
 
     public void objectCollision(Vector2d position) {
@@ -43,10 +49,13 @@ public class GrassField extends AbstractWorldMap {
         }).findFirst().orElse(null);
         if (newPosition == null){
             grassOnMap.put(oldAnimalPosition,new Grass(oldAnimalPosition));
+            mapBoundary.addElement(oldAnimalPosition);
         }
         else {
             grassOnMap.put(newPosition, new Grass(newPosition));
+            mapBoundary.addElement(newPosition);
         }
+
 
     }
 
@@ -81,10 +90,14 @@ public class GrassField extends AbstractWorldMap {
     public boolean place(Animal animal) {
         if (this.canMoveTo(animal.getPosition())) {
             animals.put(animal.getPosition(), animal);
+            animal.addObserver(mapBoundary);
+            mapBoundary.addElement(animal.getPosition());
             return true;
         }
-        return false;
+        throw new IllegalArgumentException(animal.getPosition() + " is not valid position");
     }
+
+
 
 
     @Override
@@ -96,23 +109,11 @@ public class GrassField extends AbstractWorldMap {
         return grassOnMap.get(position);
 
     }
-        @Override
-        public Vector2d[] getMapBounds () {
-            List<Vector2d> animalPosition = animals.keySet().stream().toList();
-            List<Vector2d>  grassPosition = grassOnMap.keySet().stream().toList();
-            Vector2d topRight = new Vector2d(Integer.MIN_VALUE,Integer.MIN_VALUE);
-            Vector2d downLeft = new Vector2d(Integer.MAX_VALUE, Integer.MAX_VALUE);
-            for (Vector2d x : animalPosition) {
-                topRight = x.upperRight(topRight);
-                downLeft = x.lowerLeft(downLeft);
-            }
-            for (Vector2d x : grassPosition) {
-                topRight = x.upperRight(topRight);
-                downLeft = x.lowerLeft(downLeft);
-            }
-            return new Vector2d[]{downLeft, topRight};
+    @Override
+    public Vector2d[] getMapBounds() {
+        return mapBoundary.getMapBounds();
+    }
 
-        }
     }
 
 

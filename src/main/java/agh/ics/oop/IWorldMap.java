@@ -2,7 +2,7 @@ package agh.ics.oop;
 
 
 import java.util.Map;
-public interface IWorldMap {
+public interface IWorldMap extends IPositionChangeObserver {
 
     /**
      * Indicate if any object can move to the given position.

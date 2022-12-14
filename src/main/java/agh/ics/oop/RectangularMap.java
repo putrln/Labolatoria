@@ -8,6 +8,8 @@ public class RectangularMap extends AbstractWorldMap {
     public RectangularMap(int width,int height) {
         this.width = width;
         this.height = height;
+
+
     }
     @Override
     public boolean canMoveTo(Vector2d position) {
@@ -20,9 +22,10 @@ public class RectangularMap extends AbstractWorldMap {
     public boolean place(Animal animal) {
         if (animals.size() >= width*height || !this.canMoveTo(animal.getPosition()))
         {
-            return false;
+            throw new IllegalArgumentException(animal.getPosition() + " is not valid position");
         }
         animals.put(animal.getPosition(),animal);
+
         return true;
 
     }
