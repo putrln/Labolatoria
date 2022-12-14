@@ -1,18 +1,19 @@
 package agh.ics.oop;
 
+import java.io.FileNotFoundException;
 import java.util.Objects;
 import java.util.ArrayList;
-public class Animal{
+public class Animal implements IMapElement {
     private MapDirection orientation = MapDirection.NORTH;
     private Vector2d position;
-
+    private GuiElementBox toDisplay;
     private IWorldMap map;
 
-    private ArrayList<IPositionChangeObserver> observers = new ArrayList<>();
-    public Animal(IWorldMap map,Vector2d initialPosition)
-    {
+    private ArrayList<IPositionChangeObserver> observers = new ArrayList<>(); // zmien nie zapomnij
+    public Animal(IWorldMap map,Vector2d initialPosition) {
         this.map = map;
         this.position = new Vector2d(initialPosition.x, initialPosition.y);
+        this.toDisplay = loadImg();
 
     }
 
@@ -38,6 +39,18 @@ public class Animal{
         return orientation;
     }
     public Vector2d getPosition() { return position; }
+
+    @Override
+    public String getResources() {
+        return switch (orientation)
+                {
+                    case NORTH -> "src/main/resources/up.png";
+                    case SOUTH -> "src/main/resources/down.png";
+                    case WEST -> "src/main/resources/left.png";
+                    case EAST -> "src/main/resources/right.png";
+                };
+    }
+
     public void move(MoveDirection direction)
     {
         Vector2d newPosition = new Vector2d(position.x, position.y);
@@ -66,13 +79,14 @@ public class Animal{
     }
     private void positionChanged(Vector2d oldPosition, Vector2d newPosition)
     {
+
         for(IPositionChangeObserver observer: observers)
         {
             observer.positionChanged(oldPosition,newPosition);
         }
     }
 
-
-
-
+    public GuiElementBox getToDisplay() {
+        return toDisplay;
+    }
 }

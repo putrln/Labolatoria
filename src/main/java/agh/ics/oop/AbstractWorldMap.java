@@ -33,7 +33,7 @@ public abstract class AbstractWorldMap implements IWorldMap,IPositionChangeObser
     }
 
     @Override
-    public Object objectAt(Vector2d position) {
+    public IMapElement objectAt(Vector2d position) {
 
         return (animals.get(position));
 
